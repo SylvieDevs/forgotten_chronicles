@@ -1,4 +1,4 @@
-package net.sylviedevs;
+package net.sylviedevs.scp_outbreak;
 
 import net.fabricmc.api.ModInitializer;
 

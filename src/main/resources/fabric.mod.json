@@ -16,13 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.sylviedevs.SCPOutbreak"
+			"net.sylviedevs.scp_outbreak.SCPOutbreak"
 		],
 		"client": [
-			"net.sylviedevs.SCPOutbreakClient"
+			"net.sylviedevs.scp_outbreak.SCPOutbreakClient"
 		],
 		"fabric-datagen": [
-			"net.sylviedevs.SCPOutbreakDataGenerator"
+			"net.sylviedevs.scp_outbreak.SCPOutbreakDataGenerator"
 		]
 	},
 	"mixins": [

@@ -1,4 +1,4 @@
-package net.sylviedevs;
+package net.sylviedevs.scp_outbreak;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;

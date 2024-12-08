@@ -1,4 +1,4 @@
-package net.sylviedevs.mixin;
+package net.sylviedevs.scp_outbreak.mixin;
 
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
