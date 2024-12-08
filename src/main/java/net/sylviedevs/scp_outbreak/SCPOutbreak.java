@@ -2,6 +2,7 @@ package net.sylviedevs.scp_outbreak;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.sylviedevs.scp_outbreak.item.ModItemGroups;
 import net.sylviedevs.scp_outbreak.item.ModItems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ public class SCPOutbreak implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModItemGroups.registerItemGroups();
 		ModItems.registerModItems();
 	}
 }

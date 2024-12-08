@@ -24,6 +24,6 @@ public class ModItems {
     public static void registerModItems() {
         SCPOutbreak.LOGGER.info("Registering Items...");
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ModItems::addItemsToIngredientItemGroup);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SEARCH).register(ModItems::addItemsToIngredientItemGroup);
     }
 }
