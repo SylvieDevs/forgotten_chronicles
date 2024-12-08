@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "scp-outbreak",
+	"version": "${version}",
+	"name": "SCP: Outbreak",
+	"description": "An update and reimagination of the mod SCP Lockdown",
+	"authors": [
+		"SylvieDevs"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "All Rights Reserved",
+	"icon": "assets/scp-outbreak/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.sylviedevs.SCPOutbreak"
+		],
+		"client": [
+			"net.sylviedevs.SCPOutbreakClient"
+		],
+		"fabric-datagen": [
+			"net.sylviedevs.SCPOutbreakDataGenerator"
+		]
+	},
+	"mixins": [
+		"scp-outbreak.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.9",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
