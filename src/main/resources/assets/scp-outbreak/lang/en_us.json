@@ -1,5 +1,7 @@
 {
   "itemgroup.scp-outbreak.objects": "SCP Objects",
 
-  "item.scp-outbreak.scp_109": "SCP 109"
+  "item.scp-outbreak.scp_109": "SCP 109",
+
+  "tooltip.scp-outbreak.scp_109.nick": "The infinite canteen"
 }
