@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+
+  "textures": {
+    "front": "scp-outbreak:block/document_crafter_front",
+    "side": "scp-outbreak:block/document_crafter_side",
+    "top": "scp-outbreak:block/document_crafter_top"
+  }
+}

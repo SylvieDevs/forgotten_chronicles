@@ -1,12 +1,14 @@
 package net.sylviedevs.scp_outbreak.handlers;
 
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.sylviedevs.scp_outbreak.SCPOutbreak;
 
@@ -18,23 +20,28 @@ public class ModItems {
     private static final Item.Settings defaultSettings = new Item.Settings();
 
     public static List<Item> registeredItems = new ArrayList<>();
-    public static String[][] itemIdentifiers = {
-            {"scp_109", "objects"}
-    };
+    public static Object[][] itemIdentifiers = {
+            {"blank_document", "ingredients", ItemGroups.INGREDIENTS},
+            {"screwdriver", "tools", ItemGroups.TOOLS},
 
-    public static final Item ERROR_ITEM = registerItem("error", new Item(new FabricItemSettings()));
+            {"scp_063", "tools", ItemGroups.TOOLS},
+            {"scp_109", "tools", ItemGroups.TOOLS},
+            {"scp_458", "food", ItemGroups.FOOD_AND_DRINK}
+    };
 
     public static Item retrieveItemFromIdentifier(String itemIdentifier) {
         for (int thisCounter = 0; thisCounter < itemIdentifiers.length; thisCounter++) {
             if (itemIdentifier.equals( itemIdentifiers[thisCounter][0] )) { return registeredItems.get(thisCounter); }
         }
 
-        return ERROR_ITEM;
+        return Items.FERMENTED_SPIDER_EYE;
     }
 
-    private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {
-        for (Item thisRegisteredItem : registeredItems) {
-            entries.add(thisRegisteredItem);
+    private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries, RegistryKey<ItemGroup> itemGroup) {
+        for (Object[] thisIdentifierBlock : itemIdentifiers) {
+            if ( !itemGroup.equals( thisIdentifierBlock[2] ) ) { continue; }
+
+            entries.add( retrieveItemFromIdentifier((String) thisIdentifierBlock[0]) );
         }
     }
 
@@ -42,24 +49,54 @@ public class ModItems {
         return Registry.register(Registries.ITEM, new Identifier(SCPOutbreak.MOD_ID, name), item);
     }
 
+    @SuppressWarnings("unchecked")
     public static void registerModItems() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         SCPOutbreak.LOGGER.info("Registering Items...");
 
-        for (String[] thisItem : itemIdentifiers) {
-            Class<?> retrieveClass = Class.forName("net.sylviedevs.scp_outbreak.item." + thisItem[1] + "." + thisItem[0].toUpperCase() + "_Item");
+        for (Object[] thisItem : itemIdentifiers) {
+            try {
+                Class<?> retrieveClass = Class.forName("net.sylviedevs.scp_outbreak.item." + thisItem[1].toString().toLowerCase() + "." + thisItem[0].toString().toUpperCase() + "_Item");
 
-            if (!Item.class.isAssignableFrom(retrieveClass)) {
-                throw new IllegalArgumentException("Class " + thisItem[0] + " is not a subtype of Item");
+                if (!Item.class.isAssignableFrom(retrieveClass)) {
+                    throw new IllegalArgumentException("Class " + thisItem[0] + " is not a subtype of Item");
+                }
+
+                Class<? extends Item> typedClass = retrieveClass.asSubclass(Item.class);
+
+                Item thisItemClass = typedClass.getDeclaredConstructor(Item.Settings.class).newInstance(defaultSettings);
+                Item thisRegisteredItem = registerItem((String) thisItem[0], thisItemClass);
+
+                if (thisItem[2] instanceof RegistryKey<?>) {
+                    RegistryKey<ItemGroup> thisItemGroup = (RegistryKey<ItemGroup>) thisItem[2];
+
+                    ItemGroupEvents.modifyEntriesEvent(thisItemGroup)
+                            .register(entries ->
+                                    addItemsToIngredientItemGroup(entries, thisItemGroup)
+                            );
+                }
+
+                registeredItems.add( thisRegisteredItem );
+            } catch (ClassNotFoundException e) {
+                Item thisRegisteredItem = registerItem((String) thisItem[0], new Item(defaultSettings));
+
+                if (thisItem[2] instanceof RegistryKey<?>) {
+                    RegistryKey<ItemGroup> thisItemGroup = (RegistryKey<ItemGroup>) thisItem[2];
+
+                    ItemGroupEvents.modifyEntriesEvent(thisItemGroup)
+                            .register(entries ->
+                                    addItemsToIngredientItemGroup(entries, thisItemGroup)
+                            );
+                }
+
+                registeredItems.add( thisRegisteredItem );
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to create item: " + thisItem[0], e);
             }
-
-            Class<? extends Item> typedClass = retrieveClass.asSubclass(Item.class);
-
-            Item thisItemClass = typedClass.getDeclaredConstructor(Item.Settings.class).newInstance(defaultSettings);
-            Item thisRegisteredItem = registerItem(thisItem[0], thisItemClass);
-
-            registeredItems.add( thisRegisteredItem );
         }
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SEARCH).register(ModItems::addItemsToIngredientItemGroup);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SEARCH)
+                .register(entries ->
+                        addItemsToIngredientItemGroup(entries, ItemGroups.SEARCH)
+                );
     }
 }

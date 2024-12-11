@@ -2,7 +2,7 @@ package net.sylviedevs.scp_outbreak;
 
 import net.fabricmc.api.ModInitializer;
 
-import net.sylviedevs.scp_outbreak.handlers.ModItemGroups;
+import net.sylviedevs.scp_outbreak.handlers.ModBlocks;
 import net.sylviedevs.scp_outbreak.handlers.ModItems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +15,9 @@ public class SCPOutbreak implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ModItemGroups.registerItemGroups();
-
         try {
             ModItems.registerModItems();
+            ModBlocks.registerModBlocks();
         } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException |
                  IllegalAccessException e) {
             throw new RuntimeException(e);

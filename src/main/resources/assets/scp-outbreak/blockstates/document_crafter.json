@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "scp-outbreak:block/document_crafter",
+      "y": 90
+    },
+
+    "facing=north": {
+      "model": "scp-outbreak:block/document_crafter"
+    },
+
+    "facing=south": {
+      "model": "scp-outbreak:block/document_crafter",
+      "y": 180
+    },
+
+    "facing=west": {
+      "model": "scp-outbreak:block/document_crafter",
+      "y": 270
+    }
+  }
+}

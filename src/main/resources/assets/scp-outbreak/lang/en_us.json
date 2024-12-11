@@ -1,7 +1,21 @@
 {
-  "itemgroup.scp-outbreak.objects": "SCP Objects",
+  "item.scp-outbreak.blank_document": "Blank Document",
+  "item.scp-outbreak.screwdriver": "Screwdriver",
 
-  "item.scp-outbreak.scp_109": "SCP 109",
+  "item.scp-outbreak.scp_063": "SCP-063",
+  "item.scp-outbreak.scp_109": "SCP-109",
+  "item.scp-outbreak.scp_458": "SCP-458",
 
-  "tooltip.scp-outbreak.scp_109.nick": "The infinite canteen"
+  "block.scp-outbreak.document_crafter": "Document Crafter",
+
+  "block.scp-outbreak.white_tile": "White Tile",
+  "block.scp-outbreak.checkered_tile": "Checkered Tile",
+
+  "block.scp-outbreak.scp_458_box": "Box of SCP-458",
+
+  "tooltip.scp-outbreak.scp_063.item": "The world's best 'toth'brush",
+  "tooltip.scp-outbreak.scp_109.item": "The infinite canteen",
+  "tooltip.scp-outbreak.scp_458.item": "Pizza :)",
+
+  "tooltip.scp-outbreak.scp_458.block": "The never-ending pizza box"
 }

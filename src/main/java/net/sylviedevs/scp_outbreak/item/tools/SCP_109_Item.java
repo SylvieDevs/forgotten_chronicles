@@ -1,22 +1,16 @@
-package net.sylviedevs.scp_outbreak.item.objects;
+package net.sylviedevs.scp_outbreak.item.tools;
 
 import net.minecraft.block.Blocks;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.*;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.sylviedevs.scp_outbreak.handlers.classes.SCPItem;
 
-import java.util.List;
-
-public class SCP_109_Item extends Item {
+public class SCP_109_Item extends SCPItem {
     public SCP_109_Item(Settings settings) {
         super(new Settings()
                 .maxCount(1)
@@ -42,12 +36,5 @@ public class SCP_109_Item extends Item {
         }
 
         return ActionResult.SUCCESS;
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add( Text.translatable("tooltip.scp-outbreak.scp_109.nick").formatted(Formatting.GRAY) );
-
-        super.appendTooltip(stack, world, tooltip, context);
     }
 }
