@@ -27,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class SCP_458_BOX_Block extends Block {
     protected static final VoxelShape CLOSED_SHAPE = Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 1.0F, 16.0F);
     protected static final VoxelShape OPEN_SHAPE = Block.createCuboidShape(0.0F, 0.0F, 0.0F, 16.0F, 13.5F, 16.0F);
@@ -48,7 +49,7 @@ public class SCP_458_BOX_Block extends Block {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add( Text.translatable("tooltip.scp-outbreak.scp_458.block").formatted(Formatting.GRAY) );
+        tooltip.add( Text.translatable("tooltip.scp-outbreak.scp_458_box.nick").formatted(Formatting.GRAY) );
 
         super.appendTooltip(stack, world, tooltip, options);
     }
@@ -56,6 +57,10 @@ public class SCP_458_BOX_Block extends Block {
     @Override
     @SuppressWarnings("deprecation")
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (player.getStackInHand(hand) != null) {
+            return ActionResult.FAIL;
+        }
+
         if (!world.isClient) {
             boolean isOpen = state.get(OPEN);
 

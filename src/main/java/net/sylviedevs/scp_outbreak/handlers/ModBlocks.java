@@ -24,7 +24,7 @@ public class ModBlocks {
     public static List<Block> registeredBlocks = new ArrayList<>();
     public static Object[][] blockIdentifiers = {
             {"document_crafter", "functional", ItemGroups.FUNCTIONAL, Blocks.IRON_BLOCK},
-            {"scp_458_box", "functional", ItemGroups.FUNCTIONAL, Blocks.IRON_BLOCK},
+            {"scp_458_box", "functional", ItemGroups.FUNCTIONAL, Blocks.WHITE_WOOL},
 
             {"white_tile", "building", ItemGroups.BUILDING_BLOCKS, Blocks.QUARTZ_BRICKS},
             {"checkered_tile", "building", ItemGroups.BUILDING_BLOCKS, Blocks.QUARTZ_BRICKS},
@@ -70,7 +70,7 @@ public class ModBlocks {
 
                 Class<? extends Block> typedClass = retrieveClass.asSubclass(Block.class);
 
-                Block thisBlockClass = typedClass.getDeclaredConstructor(Block.Settings.class).newInstance(FabricBlockSettings.copyOf((AbstractBlock) thisBlock[3]));
+                Block thisBlockClass = typedClass.getDeclaredConstructor(Block.Settings.class).newInstance(FabricBlockSettings.create());
                 Block thisRegisteredBlock = registerBlock((String) thisBlock[0], thisBlockClass);
 
                 if (thisBlock[2] instanceof RegistryKey<?>) {

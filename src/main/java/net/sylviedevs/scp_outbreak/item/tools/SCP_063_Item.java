@@ -10,14 +10,17 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.sylviedevs.scp_outbreak.handlers.classes.SCPItem;
 import net.sylviedevs.scp_outbreak.utils.ModParticleUtils;
 
+@SuppressWarnings("unused")
 public class SCP_063_Item extends SCPItem {
     public SCP_063_Item(Settings settings) {
-        super(new Settings()
+        super(settings
+                .rarity(Rarity.EPIC)
                 .maxCount(1)
         );
     }

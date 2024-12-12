@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModItems {
-    private static final Item.Settings defaultSettings = new Item.Settings();
-
     public static List<Item> registeredItems = new ArrayList<>();
     public static Object[][] itemIdentifiers = {
             {"blank_document", "ingredients", ItemGroups.INGREDIENTS},
@@ -26,7 +24,10 @@ public class ModItems {
 
             {"scp_063", "tools", ItemGroups.TOOLS},
             {"scp_109", "tools", ItemGroups.TOOLS},
-            {"scp_458", "food", ItemGroups.FOOD_AND_DRINK}
+            {"scp_458", "food", ItemGroups.FOOD_AND_DRINK},
+            {"scp_500", "food", ItemGroups.FOOD_AND_DRINK},
+
+            {"scp_500_can", "tools", ItemGroups.TOOLS}
     };
 
     public static Item retrieveItemFromIdentifier(String itemIdentifier) {
@@ -34,7 +35,7 @@ public class ModItems {
             if (itemIdentifier.equals( itemIdentifiers[thisCounter][0] )) { return registeredItems.get(thisCounter); }
         }
 
-        return Items.FERMENTED_SPIDER_EYE;
+        return Items.BARRIER;
     }
 
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries, RegistryKey<ItemGroup> itemGroup) {
@@ -63,7 +64,7 @@ public class ModItems {
 
                 Class<? extends Item> typedClass = retrieveClass.asSubclass(Item.class);
 
-                Item thisItemClass = typedClass.getDeclaredConstructor(Item.Settings.class).newInstance(defaultSettings);
+                Item thisItemClass = typedClass.getDeclaredConstructor(Item.Settings.class).newInstance(new Item.Settings());
                 Item thisRegisteredItem = registerItem((String) thisItem[0], thisItemClass);
 
                 if (thisItem[2] instanceof RegistryKey<?>) {
@@ -77,7 +78,7 @@ public class ModItems {
 
                 registeredItems.add( thisRegisteredItem );
             } catch (ClassNotFoundException e) {
-                Item thisRegisteredItem = registerItem((String) thisItem[0], new Item(defaultSettings));
+                Item thisRegisteredItem = registerItem((String) thisItem[0], new Item(new Item.Settings()));
 
                 if (thisItem[2] instanceof RegistryKey<?>) {
                     RegistryKey<ItemGroup> thisItemGroup = (RegistryKey<ItemGroup>) thisItem[2];

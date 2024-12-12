@@ -10,9 +10,10 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.sylviedevs.scp_outbreak.handlers.classes.SCPItem;
 
+@SuppressWarnings("unused")
 public class SCP_109_Item extends SCPItem {
     public SCP_109_Item(Settings settings) {
-        super(new Settings()
+        super(settings
                 .maxCount(1)
         );
     }

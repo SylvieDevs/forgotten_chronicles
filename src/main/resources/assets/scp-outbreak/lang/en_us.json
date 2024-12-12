@@ -5,6 +5,9 @@
   "item.scp-outbreak.scp_063": "SCP-063",
   "item.scp-outbreak.scp_109": "SCP-109",
   "item.scp-outbreak.scp_458": "SCP-458",
+  "item.scp-outbreak.scp_500": "SCP-500",
+
+  "item.scp-outbreak.scp_500_can": "Can of SCP-500",
 
   "block.scp-outbreak.document_crafter": "Document Crafter",
 
@@ -13,9 +16,15 @@
 
   "block.scp-outbreak.scp_458_box": "Box of SCP-458",
 
-  "tooltip.scp-outbreak.scp_063.item": "The world's best 'toth'brush",
-  "tooltip.scp-outbreak.scp_109.item": "The infinite canteen",
-  "tooltip.scp-outbreak.scp_458.item": "Pizza :)",
+  "tooltip.scp-outbreak.scp_063.nick": "The world's best 'toth'brush",
+  "tooltip.scp-outbreak.scp_109.nick": "The infinite canteen",
+  "tooltip.scp-outbreak.scp_458.nick": "Pizza :)",
+  "tooltip.scp-outbreak.scp_500.nick": "Panacea",
 
-  "tooltip.scp-outbreak.scp_458.block": "The never-ending pizza box"
+  "tooltip.scp-outbreak.scp_458_box.nick": "The never-ending pizza box",
+  "tooltip.scp-outbreak.scp_500_can.nick": "The cure for everything",
+
+  "effect.scp-outbreak.panacea": "Panacea",
+
+  "words.scp-outbreak.left": "left"
 }

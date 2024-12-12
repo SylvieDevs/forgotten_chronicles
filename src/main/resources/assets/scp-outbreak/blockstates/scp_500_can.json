@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "": {
+            "model": "scp-outbreak:block/scp_500_can"
+        }
+    }
+}
